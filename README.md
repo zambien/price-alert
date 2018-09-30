@@ -1,7 +1,7 @@
-Amazon price alert
+Wayfair price alert
 ==================
 
-Poll an Amazon sale page (or multiple pages) for a maximum price and send yourself an email if the price check passes.
+Poll an Wayfair sale page (or multiple pages) for a maximum price and send yourself an email if the price check passes.
 
 ## Installation
 Clone the repository. This code was written for python 2.7, you should also have [pip](https://pip.pypa.io/en/stable/) installed. To install external dependencies:
@@ -31,18 +31,18 @@ Configuration is held in json format, `config.json` is used by default and has s
 
 ```
 $ ./price-alert.py --help
-usage: price-alert.py [-h] [-c CONFIG] [-t POLL_INTERVAL]
+usage: price-alert.py [-h] [-c CONFIG] 
 
 optional arguments:
   -h, --help            show this help message and exit
   -c CONFIG, --config CONFIG
                         Configuration file path
-  -t POLL_INTERVAL, --poll-interval POLL_INTERVAL
-                        Time in seconds between checks
 ```
+
+If you want this to run on a regular basis use a cron job or change the loop.
 
 when running without any arguments, the script will use `config.json` for configuration and the default polling interval of 30 seconds.
 
 ### Other sale pages/email client
-The script was tested on Amazon, so if you try running it on a different site make sure that `xpath_selector` is set correctly in the configuration json and that the price check itself is correct.
+The script was tested on Wayfair, so if you try running it on a different site make sure that `xpath_selector` is set correctly in the configuration json and that the price check itself is correct.
 The smtp client is configured for Gmail, so be sure to change it if you're using a different one.

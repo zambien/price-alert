@@ -45,7 +45,7 @@ def get_price(url, selector):
     tree = html.fromstring(r.text)
     try:
         # extract the price from the string
-        price_string = re.findall('\d+.\d+', tree.xpath(selector)[0].text)[0]
+        price_string = tree.xpath(selector)[0] 
         print(price_string)
         return float(price_string.replace(',', '.'))
     except IndexError, TypeError:
@@ -73,27 +73,21 @@ def main():
     config = get_config(args.config)
     items = config['items']
 
-    while True and len(items):
+    while len(items):
         for item in copy(items):
             print('Checking price for %s (should be lower than %s)' % (
                 item[0], item[1]))
             item_page = urlparse.urljoin(config['base_url'], item[0])
             price = get_price(item_page, config['xpath_selector'])
             if not price:
-                continue
+                print('Price is %s which is too high.  Will try again later.' % price)
             elif price <= item[1]:
                 print('Price is %s!! Trying to send email.' % price)
                 send_email(price, item_page, config['email'])
                 items.remove(item)
             else:
                 print('Price is %s. Ignoring...' % price)
-
-        if len(items):
-            print('Sleeping for %d seconds' % args.poll_interval)
-            time.sleep(args.poll_interval)
-        else:
-            break
-    print('Price alert triggered for all items, exiting.')
+        break
 
 if __name__ == '__main__':
     main()

@@ -1,13 +1,12 @@
 {
     "email": {
         "smtp_url": "smtp.gmail.com:587",
-        "user": "youremail@gmail.com",
-        "password": "yourpassword"
+        "user": "REDACTED@gmail.com",
+        "password": "REDACTED"
     },
-    "base_url": "https://www.amazon.de/dp/",
-    "xpath_selector": "//*[@id='priceblock_ourprice']",
+    "base_url": "https://www.wayfair.com",
+    "xpath_selector": "//meta[@property='product:price:amount']/@content",
     "items": [
-        ["B00ZDWLEEG",100],
-        ["B0189XZKXG", 200]
+        ["outdoor/pdp/three-posts-madison-avenue-4-piece-sectional-with-cushions-trpt6069.html",1800]
     ]
 }
